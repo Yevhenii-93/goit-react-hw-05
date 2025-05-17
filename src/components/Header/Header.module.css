@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #0b7beb;
+  border-bottom: 1px solid #2a2a2a;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.link {
+  color: rgb(0, 0, 0);
+
+  &:hover {
+    color: yellow;
+  }
+}
+
+.isActive {
+  color: rgb(0, 255, 0);
+  text-decoration-line: underline;
+  text-decoration-color: #031425;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 8px;
+}
