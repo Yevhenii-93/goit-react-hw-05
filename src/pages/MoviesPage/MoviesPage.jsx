@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchTopFilmsApi } from "../../services/services.js";
 import css from "./MoviesPage.module.css";
 import MoviesList from "../../components/MoviesList/MoviesList.jsx";
+import SearchMovie from "../../components/SearchMovie/SearchMovie.jsx";
 
 export default function MoviesPage() {
   const [topik, setTopik] = useState([]);
@@ -21,6 +22,8 @@ export default function MoviesPage() {
 
   return (
     <div>
+      <SearchMovie />
+
       <h2 className={css.title}>TOP 20 today</h2>
       {topik.length > 0 && (
         <ul className={css.list}>

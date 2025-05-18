@@ -1,0 +1,13 @@
+.form {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.input {
+  background-color: #fafafa;
+  color: #000;
+  border: 1px solid #0e1ce6;
+  border-radius: 10px;
+  padding: 4px;
+}

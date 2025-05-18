@@ -19,29 +19,25 @@ export default function MovieDetailsPage() {
     fetchInfo(movieId);
   }, [movieId]);
 
-  if (!info) {
-    return;
-  }
-  const genresList = info.genres.map((genre) => genre.name).join(", ");
-  console.log(genresList);
-
+  console.log(info);
   return (
     <>
       {info && (
         <div>
           <div>
-            <h2>{info.title}</h2>
-            <p>({info.release_date})</p>
             <img
               src={`https://image.tmdb.org/t/p/w500${info.poster_path}`}
               alt={info.title}
             />
+            <h2>{info.title}</h2>
+            <p>({info.release_date})</p>
             <p>{info.vote_average.toFixed(2)}</p>
-            {info.genres.length === 1 ? (
-              <p>Genres: {genresList}</p>
-            ) : (
-              <div>1</div>
-            )}
+            <ul>
+              {info.genres.map((genre) => (
+                <li key={genre.id}>{genre.name}</li>
+              ))}
+            </ul>
+
             <p>{info.tagline}</p>
           </div>
         </div>
