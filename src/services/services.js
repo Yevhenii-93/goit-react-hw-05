@@ -15,3 +15,8 @@ export const fetchTopFilmsApi = async () => {
   const response = await axios("/trending/movie/day", options);
   return response.data.results;
 };
+
+export const fetchMovieDetails = async (movieId) => {
+  const response = await axios(`/movie/${movieId}`, options);
+  return response.data;
+};
