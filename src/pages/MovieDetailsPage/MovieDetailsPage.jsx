@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import { fetchMovieDetails } from "../../services/services";
+import GoBack from "../../components/GoBack/GoBack";
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const [info, setInfo] = useState(null);
+
+  const location = useLocation();
+  const backlinkRef = useRef(location.state);
 
   useEffect(() => {
     async function fetchInfo(movieId) {
@@ -19,9 +23,9 @@ export default function MovieDetailsPage() {
     fetchInfo(movieId);
   }, [movieId]);
 
-  // console.log(info);
   return (
     <>
+      <GoBack location={backlinkRef.current} />
       {info && (
         <div>
           <div>

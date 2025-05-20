@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import { useDebounce } from "use-debounce";
+import css from "./SearchMovie.module.css";
 
 export default function SearchMovie({ onChange, value }) {
   const [inputValue, setInputValue] = useState(value ?? "");
@@ -26,8 +27,9 @@ export default function SearchMovie({ onChange, value }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={css.form} onSubmit={handleSubmit}>
       <input
+        className={css.input}
         onChange={handleChange}
         name="searchValue"
         type="text"
