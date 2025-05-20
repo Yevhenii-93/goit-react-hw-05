@@ -1,30 +1,50 @@
 import { useEffect, useState } from "react";
-import { fetchTopFilmsApi } from "../../services/services.js";
+import { searchMovie } from "../../services/services.js";
 import css from "./MoviesPage.module.css";
 import MoviesList from "../../components/MoviesList/MoviesList.jsx";
 import SearchMovie from "../../components/SearchMovie/SearchMovie.jsx";
+import { useSearchParams } from "react-router-dom";
 
 export default function MoviesPage() {
   const [topik, setTopik] = useState([]);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const searchValue = searchParams.get("query") ?? "";
+
+  const handleChangeSearchSubmit = (newSearchValue) => {
+    const nextSearchParams = new URLSearchParams(searchParams);
+
+    if (newSearchValue !== "") {
+      nextSearchParams.set("query", newSearchValue);
+    } else {
+      nextSearchParams.delete("query");
+    }
+    setSearchParams(nextSearchParams);
+  };
+
   useEffect(() => {
-    async function fetchTopikMovies() {
+    const fetchData = async () => {
+      if (searchValue.trim() === "") {
+        setTopik([]);
+        return;
+      }
+
       try {
-        const newTopik = await fetchTopFilmsApi();
-        setTopik(newTopik);
+        const data = await searchMovie(searchValue);
+        setTopik(data);
       } catch (error) {
         console.log(error);
       }
-    }
+    };
 
-    fetchTopikMovies();
-  }, []);
+    fetchData();
+  }, [searchValue]);
 
   return (
     <div>
-      <SearchMovie />
+      <SearchMovie value={searchValue} onChange={handleChangeSearchSubmit} />
 
-      <h2 className={css.title}>TOP 20 today</h2>
       {topik.length > 0 && (
         <ul className={css.list}>
           {topik.map((topik) => (

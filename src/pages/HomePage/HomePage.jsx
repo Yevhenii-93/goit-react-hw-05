@@ -10,7 +10,7 @@ export default function HomePage() {
     async function fetchTopFilms() {
       try {
         const newTopik = await fetchTopFilmsApi();
-        setTopik(newTopik.slice(0, 10));
+        setTopik(newTopik);
       } catch (error) {
         console.log(error);
       }
@@ -21,7 +21,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <h2 className={css.title}>TOP 10 today</h2>
+      <h2 className={css.title}>Trending today</h2>
 
       {topik.length > 0 && (
         <ul className={css.list}>
