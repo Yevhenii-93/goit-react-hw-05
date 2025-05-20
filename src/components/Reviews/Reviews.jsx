@@ -11,7 +11,9 @@ export default function Overview() {
       try {
         const data = await fetchMovieReviews(movieId);
         setReviews(data);
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     fetchReviews(movieId);

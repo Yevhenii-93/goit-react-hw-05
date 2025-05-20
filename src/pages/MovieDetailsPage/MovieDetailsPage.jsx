@@ -40,7 +40,15 @@ export default function MovieDetailsPage() {
 
             <p>{info.tagline}</p>
           </div>
-          <NavLink to="reviews">Reviews</NavLink>
+          <ul>
+            <li>
+              <NavLink to="reviews">Reviews</NavLink>
+            </li>
+            <li>
+              <NavLink to="cast">Cast</NavLink>
+            </li>
+          </ul>
+
           <Outlet />
         </div>
       )}

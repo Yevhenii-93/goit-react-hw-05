@@ -6,6 +6,7 @@ import MoviesPage from "../../pages/MoviesPage/MoviesPage";
 import MovieDetailsPage from "../../pages/MovieDetailsPage/MovieDetailsPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import Reviews from "../Reviews/Reviews";
+import Cast from "../Cast/Cast";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/movies" element={<MoviesPage />} />
         <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
           <Route path="reviews" element={<Reviews />} />
+          <Route path="cast" element={<Cast />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
