@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 import { fetchMovieDetails } from "../../services/services";
 
 export default function MovieDetailsPage() {
@@ -19,7 +19,7 @@ export default function MovieDetailsPage() {
     fetchInfo(movieId);
   }, [movieId]);
 
-  console.log(info);
+  // console.log(info);
   return (
     <>
       {info && (
@@ -40,6 +40,8 @@ export default function MovieDetailsPage() {
 
             <p>{info.tagline}</p>
           </div>
+          <NavLink to="reviews">Reviews</NavLink>
+          <Outlet />
         </div>
       )}
     </>
