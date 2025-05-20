@@ -1,0 +1,13 @@
+.errorMessage {
+  color: #d32f2f;
+  background-color: #fdecea;
+  border: 1px solid #f5c6cb;
+  padding: 16px 20px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  max-width: 500px;
+  margin: 20px auto;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}

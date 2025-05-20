@@ -2,10 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import { fetchMovieDetails } from "../../services/services";
 import GoBack from "../../components/GoBack/GoBack";
+import Loading from "../../components/Loading/Loading.jsx";
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const [info, setInfo] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const location = useLocation();
   const backlinkRef = useRef(location.state);
@@ -13,10 +16,14 @@ export default function MovieDetailsPage() {
   useEffect(() => {
     async function fetchInfo(movieId) {
       try {
+        setError(false);
+        setLoading(true);
         const movieInfo = await fetchMovieDetails(movieId);
         setInfo(movieInfo);
-      } catch (error) {
-        console.log(error);
+      } catch {
+        setError(true);
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -56,6 +63,8 @@ export default function MovieDetailsPage() {
           <Outlet />
         </div>
       )}
+      {loading && <Loading />}
+      {error && <ErrorMessage />}
     </>
   );
 }

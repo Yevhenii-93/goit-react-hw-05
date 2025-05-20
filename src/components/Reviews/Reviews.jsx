@@ -1,18 +1,25 @@
 import { useParams } from "react-router-dom";
 import { fetchMovieReviews } from "../../services/services";
 import { useEffect, useState } from "react";
+import Loading from "../Loading/Loading";
 
 export default function Overview() {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     async function fetchReviews(movieId) {
       try {
+        setError(false);
+        setLoading(true);
         const data = await fetchMovieReviews(movieId);
         setReviews(data);
-      } catch (error) {
-        console.log(error);
+      } catch {
+        setError(true);
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -20,13 +27,17 @@ export default function Overview() {
   }, [movieId]);
 
   return (
-    <ul>
-      {reviews.map((review) => (
-        <li key={review.id}>
-          <h3>Author: {review.author}</h3>
-          <p>{review.content}</p>
-        </li>
-      ))}
-    </ul>
+    <>
+      {loading && <Loading />}
+      {error && <ErrorMessage />}
+      <ul>
+        {reviews.map((review) => (
+          <li key={review.id}>
+            <h3>Author: {review.author}</h3>
+            <p>{review.content}</p>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }

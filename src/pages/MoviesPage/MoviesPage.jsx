@@ -4,9 +4,12 @@ import css from "./MoviesPage.module.css";
 import MoviesList from "../../components/MoviesList/MoviesList.jsx";
 import SearchMovie from "../../components/SearchMovie/SearchMovie.jsx";
 import { useSearchParams } from "react-router-dom";
+import Loading from "../../components/Loading/Loading.jsx";
 
 export default function MoviesPage() {
   const [topik, setTopik] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -31,10 +34,14 @@ export default function MoviesPage() {
       }
 
       try {
+        setError(false);
+        setLoading(true);
         const data = await searchMovie(searchValue);
         setTopik(data);
-      } catch (error) {
-        console.log(error);
+      } catch {
+        setError(true);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -44,6 +51,9 @@ export default function MoviesPage() {
   return (
     <div>
       <SearchMovie value={searchValue} onChange={handleChangeSearchSubmit} />
+
+      {loading && <Loading />}
+      {error && <ErrorMessage />}
 
       {topik.length > 0 && (
         <ul className={css.list}>
