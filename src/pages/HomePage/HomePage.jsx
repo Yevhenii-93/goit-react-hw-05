@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchTopFilmsApi } from "../../services/services.js";
-import MoviesList from "../../components/MoviesList/MoviesList.jsx";
+import MovieList from "../../components/MovieList/MovieList.jsx";
 import css from "./HomePage.module.css";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage.jsx";
 import Loading from "../../components/Loading/Loading.jsx";
@@ -36,7 +36,7 @@ export default function HomePage() {
       {topik.length > 0 && (
         <ul className={css.list}>
           {topik.map((topik) => (
-            <MoviesList key={topik.id} topik={topik} />
+            <MovieList key={topik.id} topik={topik} />
           ))}
         </ul>
       )}

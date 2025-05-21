@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { searchMovie } from "../../services/services.js";
 import css from "./MoviesPage.module.css";
-import MoviesList from "../../components/MoviesList/MoviesList.jsx";
+import MovieList from "../../components/MovieList/MovieList.jsx";
 import SearchMovie from "../../components/SearchMovie/SearchMovie.jsx";
 import { useSearchParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading.jsx";
@@ -58,7 +58,7 @@ export default function MoviesPage() {
       {topik.length > 0 && (
         <ul className={css.list}>
           {topik.map((topik) => (
-            <MoviesList key={topik.id} topik={topik} />
+            <MovieList key={topik.id} topik={topik} />
           ))}
         </ul>
       )}
