@@ -2,10 +2,10 @@ import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import css from "./App.module.css";
 
-import Header from "../Header/Header";
+import Navigation from "../Navigation/Navigation";
 
-import Reviews from "../Reviews/Reviews";
-import Cast from "../Cast/Cast";
+import MovieReviews from "../MovieReviews/MovieReviews";
+import MovieCast from "../MovieCast/MovieCast";
 import Loading from "../Loading/Loading";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
@@ -20,15 +20,15 @@ const NotFoundPage = lazy(() =>
 export default function App() {
   return (
     <div className={css.container}>
-      <Header />
+      <Navigation />
 
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movies" element={<MoviesPage />} />
           <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
-            <Route path="reviews" element={<Reviews />} />
-            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<MovieReviews />} />
+            <Route path="cast" element={<MovieCast />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
