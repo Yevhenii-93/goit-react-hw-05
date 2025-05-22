@@ -4,6 +4,7 @@ import MovieList from "../../components/MovieList/MovieList.jsx";
 import SearchMovie from "../../components/SearchMovie/SearchMovie.jsx";
 import { useSearchParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading.jsx";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage.jsx";
 
 export default function MoviesPage() {
   const [topik, setTopik] = useState([]);

@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { fetchMovieReviews } from "../../services/services";
 import { useEffect, useState } from "react";
 import Loading from "../Loading/Loading";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 export default function Overview() {
   const { movieId } = useParams();
