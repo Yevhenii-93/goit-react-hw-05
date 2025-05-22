@@ -33,13 +33,7 @@ export default function HomePage() {
       {loading && <Loading />}
       {error && <ErrorMessage />}
 
-      {topik.length > 0 && (
-        <ul className={css.list}>
-          {topik.map((topik) => (
-            <MovieList key={topik.id} topik={topik} />
-          ))}
-        </ul>
-      )}
+      {topik.length > 0 && <MovieList topik={topik} />}
     </div>
   );
 }

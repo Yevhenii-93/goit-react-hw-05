@@ -4,14 +4,18 @@ import css from "./MovieList.module.css";
 export default function MoviesList({ topik }) {
   const location = useLocation();
   return (
-    <li className={css.container}>
-      <Link to={`/movies/${topik.id}`} state={location}>
-        <h3>{topik.title}</h3>
-        <img
-          src={`https://image.tmdb.org/t/p/w500${topik.poster_path}`}
-          alt={topik.title}
-        />
-      </Link>
-    </li>
+    <ul>
+      {topik.map((topik) => (
+        <li key={topik.id} className={css.container}>
+          <Link to={`/movies/${topik.id}`} state={location}>
+            <h3>{topik.title}</h3>
+            <img
+              src={`https://image.tmdb.org/t/p/w500${topik.poster_path}`}
+              alt={topik.title}
+            />
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 }
