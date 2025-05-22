@@ -31,9 +31,7 @@ export default function Cast() {
       {loading && <Loading />}
       {error && <ErrorMessage />}
 
-      {!cast ? (
-        <p>Sorry. Cast not found</p>
-      ) : (
+      {cast.length > 0 ? (
         <ul>
           {cast.map((actor) => (
             <li key={actor.cast_id}>
@@ -46,6 +44,8 @@ export default function Cast() {
             </li>
           ))}
         </ul>
+      ) : (
+        <p>Sorry. Cast not found</p>
       )}
     </>
   );

@@ -31,14 +31,19 @@ export default function Overview() {
     <>
       {loading && <Loading />}
       {error && <ErrorMessage />}
-      <ul>
-        {reviews.map((review) => (
-          <li key={review.id}>
-            <h3>Author: {review.author}</h3>
-            <p>{review.content}</p>
-          </li>
-        ))}
-      </ul>
+
+      {reviews.length > 0 ? (
+        <ul>
+          {reviews.map((review) => (
+            <li key={review.id}>
+              <h3>Author: {review.author}</h3>
+              <p>{review.content}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>Sorry. Reviews not found</p>
+      )}
     </>
   );
 }
