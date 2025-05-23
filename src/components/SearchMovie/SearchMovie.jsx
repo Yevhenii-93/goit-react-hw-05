@@ -8,7 +8,7 @@ export default function SearchMovie({ onChange, value }) {
   const [debouncedValue] = useDebounce(inputValue, 1000);
 
   useEffect(() => {
-    setInputValue(value || "");
+    setInputValue(value.trim() ?? "");
   }, [value]);
 
   useEffect(() => {
@@ -23,7 +23,9 @@ export default function SearchMovie({ onChange, value }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onChange(inputValue);
+    if (inputValue.trim() !== "") {
+      onChange(inputValue);
+    }
   };
 
   return (

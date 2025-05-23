@@ -3,6 +3,7 @@ import css from "./MovieList.module.css";
 
 export default function MoviesList({ topik }) {
   const location = useLocation();
+  console.log(topik);
   return (
     <ul>
       {topik.map((topik) => (

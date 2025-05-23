@@ -23,7 +23,7 @@ export default function MoviesPage() {
     } else {
       nextSearchParams.delete("query");
     }
-    setSearchParams(nextSearchParams);
+    setSearchParams({ query: nextSearchParams });
   };
 
   useEffect(() => {
