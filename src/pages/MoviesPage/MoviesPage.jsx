@@ -16,7 +16,7 @@ export default function MoviesPage() {
   const searchValue = searchParams.get("query") ?? "";
 
   const handleChangeSearchSubmit = (newSearchValue) => {
-    setSearchParams({ query: nextSearchParams });
+    setSearchParams({ query: newSearchValue });
   };
 
   useEffect(() => {
