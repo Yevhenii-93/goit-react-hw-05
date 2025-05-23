@@ -16,13 +16,6 @@ export default function MoviesPage() {
   const searchValue = searchParams.get("query") ?? "";
 
   const handleChangeSearchSubmit = (newSearchValue) => {
-    const nextSearchParams = new URLSearchParams(searchParams);
-
-    if (newSearchValue !== "") {
-      nextSearchParams.set("query", newSearchValue);
-    } else {
-      nextSearchParams.delete("query");
-    }
     setSearchParams({ query: nextSearchParams });
   };
 
